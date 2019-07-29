@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Form by Tooplate</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="css/tooplate.css">
+    <style>
+    .containers{
+        margin-top: 10%;
+        height: 20%;
+        width: 30%;
+        margin-left: 35%;
+    
+    }
+    #login{
+        background-image: url("img/input-bg-05.jpg");
+    }
+    </style>
+</head>
+
+<body id="login">
+    <div class="containers">
+        <form action="" method="post" class="tm-bg-black p-5 h-100">
+            <div class="input-field">
+                <input placeholder="Username" id="username" name="username" type="text" class="validate">
+            </div>
+            <div class="input-field mb-5">
+                <input placeholder="Password" id="password" name="password" type="password" class="validate">
+            </div>
+            <div class="tm-flex-lr">
+                <a href="#" class="white-text small">Forgot Password?</a>
+                <button type="submit"
+                    class="waves-effect btn-large btn-large-white px-4 black-text rounded-0">Login</button>
+            </div>
+        </form>
+
+    </div>
+
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('select').formSelect();
+        });
+    </script>
+</body>
+
+</html>

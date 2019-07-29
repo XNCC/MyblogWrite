@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 该文件编写mybatis中的mapper接口里面的方法提供对应的sql语句 -->
+<mapper namespace="ncc.freemark.freemark.dao.Mapper">
+
+    <!--登陆查询-->
+    <select id="selectUser" resultType="ncc.freemark.freemark.pojo.User">
+        select * from users where username=#{username}
+    </select>
+    <!--保存博客时使用-->
+    <select id="selectTag" resultType="ncc.freemark.freemark.pojo.Tag">
+        select *  from tag where tag=#{tag}
+    </select>
+    <insert id="insertTag" useGeneratedKeys="true" keyProperty="id" parameterType="ncc.freemark.freemark.pojo.Tag">
+        insert into tag (tag)values(#{tag})
+     </insert>
+    <insert id="insertBlog" useGeneratedKeys="true" keyProperty="id" parameterType="ncc.freemark.freemark.pojo.Blog">
+        insert into SaveBlog(content,title,userid,classify,time)values(#{content},#{title},#{userid},#{classify},#{time})
+     </insert>
+    <insert id="insertblogandtag"  parameterType="ncc.freemark.freemark.pojo.blogandtag">
+        insert into blogandtag(tagid,blogid)values(#{tagid},#{blogid})
+     </insert>
+
+    <!--前端index使用-->
+    <!--查询所有blog和username和标签-->
+    <select id="selectAllBlog" resultType="ncc.freemark.freemark.pojo.showAllBlogPojo">
+        select saveblog.*, users.username from saveblog,users where saveblog.userid=users.id
+    </select>
+    <!--查询上面所有以id为线索查询blogandtag表中对应的tagid，从而查出tag标签-->
+    <select id="selecttagid" resultType="ncc.freemark.freemark.pojo.blogandtag">
+        select * from blogandtag where blogid=#{blogid}
+    </select>
+    <select id="selecttag" resultType="ncc.freemark.freemark.pojo.Tag">
+        select * from tag where id=#{id}
+    </select>
+
+
+
+    <!--通过userid和title查询content信息-->
+    <select id="selectOne" resultType="ncc.freemark.freemark.pojo.Blog">
+        select *  from saveblog where userid=#{userid} and title=#{title}
+    </select>
+
+    <!---classify页查询-->
+    <select id="selectClassifyAndCount" resultType="ncc.freemark.freemark.pojo.ClassifyAndCount">
+       select classify, count(*) from saveblog Group by classify
+    </select>
+     <select id="selectCount" resultType="int">
+         select count(*) from saveblog where classify = #{classify}
+     </select>
+
+    <!--标签页使用-->
+    <select id="selectAllTag" resultType="ncc.freemark.freemark.pojo.Tag">
+        select * from tag
+    </select>
+    <!--通过id查询blog-->
+    <select id="selectOneBlog" resultType="ncc.freemark.freemark.pojo.Blog">
+        select *  from saveblog where id=#{id}
+    </select>
+    <!--删除Blog-->
+    <delete id="deleteBlog" parameterType="int">
+        delete  from saveblog where id=#{id}
+    </delete>
+    <!--更新Blog-->
+    <update id="updateBlog" parameterType="ncc.freemark.freemark.pojo.Blog">
+        update saveblog set content=#{content},title=#{title},classify=#{classify} where id=#{id}
+    </update>
+
+    <!--查询classify个数一级标签个数-->
+    <select id="selectContclassify" resultType="int">
+        select count(classify) from saveblog
+    </select>
+    <select id="selectCountTag" resultType="int">
+        select count(tag) from tag
+    </select>
+
+</mapper>
