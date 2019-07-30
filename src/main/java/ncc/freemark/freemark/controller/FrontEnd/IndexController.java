@@ -52,6 +52,9 @@ public class IndexController {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         for (int i = 0; i < list.size(); i++) {
             list.get(i).setTimes(sdf.format(list.get(i).getTime()));
+            if(list.get(i).getCount()==null){
+                list.get(i).setCount(0);
+            }
         }
         //将查询结果集封装到pageinfo对象中
         PageInfo<showAllBlogPojo> pageInfo = new PageInfo<showAllBlogPojo>(list);
@@ -61,6 +64,7 @@ public class IndexController {
         result.put("total", pageInfo.getTotal());
         result.put("page", pageInfo.getPageNum());
         result.put("pagesize", pageSize);
+        System.out.println(blogList);
         return result;
     }
 
@@ -75,6 +79,15 @@ public class IndexController {
         Blog b = blogService.selectOne(id, t);
         model.addAttribute("user", user);
         model.addAttribute("blog", b);
+        //<!--每篇访问次数统计-->
+       Integer count= blogService.selectBlogcishu(id,title);
+        System.out.println(count);
+       if(count==null){
+           blogService.updateBlogcishu(1,id,title);
+       }else{
+           blogService.updateBlogcishu(count+1,id,title);
+       }
+
         return "views/showDetails";
     }
 

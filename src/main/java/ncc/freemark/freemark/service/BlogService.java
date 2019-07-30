@@ -61,4 +61,13 @@ public class BlogService {
     public int selectCountTag(){
        return mapper.selectCountTag();
     }
+
+    //<!--每篇访问次数统计-->
+    public Integer selectBlogcishu(int userid,String title){
+        return mapper.selectBlogcishu(userid,title);
+    }
+    public Boolean updateBlogcishu(int count,int userid,String title){
+        return mapper.updateBlogcishu(count, userid,title);
+    }
+
 }

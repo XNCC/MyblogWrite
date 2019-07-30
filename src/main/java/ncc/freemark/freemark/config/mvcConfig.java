@@ -15,7 +15,7 @@ public class mvcConfig  implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(baseInterceptor).addPathPatterns("/**").excludePathPatterns("/login", "/","/showBlog","/showDetails/*/*/*","/classify","/tag","/friendsLink","/about","/static/**");
+        registry.addInterceptor(baseInterceptor).addPathPatterns("/**").excludePathPatterns("/login", "/","/showBlog","/showDetails/**","/classify","/tag","/friendsLink","/about","/static/**","/page/**");
       //  WebMvcConfigurer.super.addInterceptors(registry);    //较新Spring Boot的版本中这里可以直接去掉，否则会报错
     }
 

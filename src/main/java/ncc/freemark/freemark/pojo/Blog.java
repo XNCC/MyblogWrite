@@ -10,6 +10,15 @@ public class Blog {
     String classify;
     Date time;
     String summary;
+    Integer count;
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
 
     public int getId() {
         return id;

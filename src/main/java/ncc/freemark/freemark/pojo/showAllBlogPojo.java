@@ -12,6 +12,16 @@ public class showAllBlogPojo{
     String classify;
     Date time;
     String summary;
+    Integer count;
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
     String username;
 
     String times; ///用于接受String 类型的数据

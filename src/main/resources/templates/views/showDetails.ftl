@@ -34,7 +34,7 @@
                         <i>${blog.time?string('yyyy-MM-dd')}</i>&nbsp;&nbsp;&nbsp;&nbsp;
                     </#if>
                      <a href="#">${user!}</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                     阅读数:3236
+                     阅读数:${blog.count!0}
                     <hr/>
                     <h3>${blog.title!}</h3>
                      ${blog.content!}
