@@ -52,7 +52,9 @@
         .borderset foot a {
             color: #ffe211;
         }
-
+       #footpngs{
+           text-align: center;
+       }
     </style>
 </head>
 <body>
@@ -73,7 +75,7 @@
                             <p><i class="summary" style=" color: #56585a; font-size: 15px">${item.summary!}</i></p>
                         </div>
                         <foot>
-                            <a href="#" style=" color: #78b8ff; font-size: 10px;">8989</a> &nbsp;
+                            <a href="#" style=" color: #78b8ff; font-size: 10px;">${item.count!0}</a> &nbsp;
                             <span style=" color: #56585a; font-size: 10px;">&nbsp;
                                         ${item.username!} &nbsp; &nbsp;
                                         <#if item.time??>
@@ -104,7 +106,10 @@
         <div id="myPage" class="demo"></div>
 
     </div>
-    <img src="static/imgs/footer.png"/>
+    <div id="footpngs">
+        <img  src="static/imgs/footer.png"/>
+    </div>
+
     <#include "../commonViews/footer.ftl"/>
 </div>
 
@@ -140,7 +145,6 @@
             nextPage: "下一页",//下翻页文字描述，默认“下一页”
             backFun: function (page) {
                 //点击分页按钮回调函数，返回当前页码
-                // $("#pNum").text(page);
                 ajaxPage(page);
             }
         });
@@ -159,16 +163,16 @@
             dataType: "json",
             success: function (data) {
                 //数据处理
-                //  alert(data);
+                alert(data);
                 $("#showBlogId").empty();
                 for (var i = 0; i < data.rows.length; i++) {
                     $("#showBlogId").append(
                         "<div class='col-md-12 borderset'><h2><a style=' color: #141619; font-size: 19px' href='showDetails/" + data.rows[i].userid + "/" + data.rows[i].title + "/" + data.rows[i].username + "'>" + data.rows[i].title + "</a></h2>" +
                         "<div>" +
-                        "<p style=' color: #56585a; font-size: 15px'> <i class='summary'>" + data.rows[i].summary + "</i></p>" +
+                        "<p style=' color: #56585a; font-size: 15px'> </p>" +
                         "</div>" +
                         "<foot>" +
-                        "<a href='#'>" + 8989 + "</a>&nbsp; <span style=\" color: #56585a; font-size: 10px;\">&nbsp;" +
+                        "<a href='#'>" + data.rows[i].count + "</a>&nbsp; <span style=\" color: #56585a; font-size: 10px;\">&nbsp;" +
                         "" + data.rows[i].username + "&nbsp;" +
                         "" + data.rows[i].times + "&nbsp;" +
                         "" + data.rows[i].classify + "</span>" +
