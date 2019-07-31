@@ -76,4 +76,12 @@
         select count(tag) from tag
     </select>
 
+    <!--每篇访问次数统计-->
+    <select id="selectBlogcishu" resultType="integer">
+        select count from saveblog where userid=#{userid} and title=#{title}
+    </select>
+    <update id="updateBlogcishu" >
+        update saveblog set count=#{count} where userid=#{userid} and title=#{title}
+    </update>
+
 </mapper>

@@ -41,4 +41,9 @@ public interface Mapper {
   // <!--查询classify个数一级标签个数-->
   public int selectContclassify();
   public int selectCountTag();
+
+
+   //<!--每篇访问次数统计-->
+  public Integer selectBlogcishu(int userid,String title);
+  public Boolean updateBlogcishu(int count,int userid,String title);
 }
